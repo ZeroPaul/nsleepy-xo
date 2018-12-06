@@ -39,4 +39,28 @@ def sleepy(hour, minute):
     third_time = time_format(third_time.time())
     return(time_get_up, night_time, first_time, second_time, third_time)
 
-print(sleepy(5,50))
+def sleepy_now():
+    time_now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time_now = dt.strptime(str(time_now), "%Y-%m-%d %H:%M:%S")
+    rule_ninety = datetime.timedelta(hours=0, minutes=90)
+    rule_fourteen = datetime.timedelta(hours=0, minutes=14)
+
+    first_time = time_now + rule_ninety + rule_fourteen
+    second_time = time_now + rule_ninety + rule_ninety + rule_fourteen
+    third_time = time_now + rule_ninety + rule_ninety + rule_ninety + \
+    rule_fourteen
+    #fourth_time = time_now + rule_ninety + rule_ninety + rule_fourteen
+    #fifth_time = time_now + rule_ninety + rule_ninety + rule_fourteen
+    #sixth_time = time_now + rule_ninety + rule_ninety + rule_fourteen
+
+    time_now = time_format(time_now.time())
+    first_time = time_format(first_time.time())
+    second_time = time_format(second_time.time())
+    third_time = time_format(third_time.time())
+    #fourth_time = time_format(fourth_time.time())
+    #fifth_time = time_format(fifth_time.time())
+    #sixth_time = time_format(sixth_time.time())
+    return (time_now, first_time, second_time, third_time)
+
+print(sleepy(5,30))
+print(sleepy_now())
