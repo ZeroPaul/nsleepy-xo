@@ -22,6 +22,10 @@ def time_format(time_str):
     time_str = time_str.strftime("%I:%M:%S %p")
     return (time_str)
 
+def add_up_hour( minutes, number, extra_minutes):
+    total_minutes = ( minutes * number ) + extra_minutes
+    return (total_minutes)
+
 def sleepy(hour, minute):
     time_get_up = datetime.datetime(100,1,1,hour, minute,00)
     night_time = datetime.timedelta(hours=9)
@@ -42,25 +46,25 @@ def sleepy(hour, minute):
 def sleepy_now():
     time_now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     time_now = dt.strptime(str(time_now), "%Y-%m-%d %H:%M:%S")
-    rule_ninety = datetime.timedelta(hours=0, minutes=90)
-    rule_fourteen = datetime.timedelta(hours=0, minutes=14)
+    #rule_ninety = datetime.timedelta(hours=0, minutes=90)
+    #rule_fourteen = datetime.timedelta(hours=0, minutes=14)
 
-    first_time = time_now + rule_ninety + rule_fourteen
-    second_time = time_now + rule_ninety + rule_ninety + rule_fourteen
-    third_time = time_now + rule_ninety + rule_ninety + rule_ninety + \
-    rule_fourteen
-    #fourth_time = time_now + rule_ninety + rule_ninety + rule_fourteen
-    #fifth_time = time_now + rule_ninety + rule_ninety + rule_fourteen
-    #sixth_time = time_now + rule_ninety + rule_ninety + rule_fourteen
+    first_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 1, 14)))
+    second_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 2, 14)))
+    third_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 3, 14)))
+    fourth_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 4, 14)))
+    fifth_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 5, 14)))
+    sixth_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 6, 14)))
 
     time_now = time_format(time_now.time())
     first_time = time_format(first_time.time())
     second_time = time_format(second_time.time())
     third_time = time_format(third_time.time())
-    #fourth_time = time_format(fourth_time.time())
-    #fifth_time = time_format(fifth_time.time())
-    #sixth_time = time_format(sixth_time.time())
-    return (time_now, first_time, second_time, third_time)
+    fourth_time = time_format(fourth_time.time())
+    fifth_time = time_format(fifth_time.time())
+    sixth_time = time_format(sixth_time.time())
+    return (time_now, first_time, second_time, third_time, fourth_time,
+            fifth_time, sixth_time)
 
 print(sleepy(5,30))
 print(sleepy_now())
