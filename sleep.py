@@ -3,20 +3,6 @@ import datetime
 from datetime import datetime as dt
 
 
-a = datetime.datetime(100,1,1,5,30,00)
-b = datetime.timedelta(hours=1,minutes=30)
-c = datetime.timedelta(hours=9)
-d = a - c
-
-e = dt.strptime(str(a.time()), "%H:%M:%S")
-print(e.strftime("%I:%M:%S %p"))
-
-print("Time Get up : %s" % a.time())
-print("Time sleep : %s" % d.time())
-print("Time sleep : %s" % (d + b).time())
-print("Time sleep : %s" % (d + b + b).time())
-print("Time sleep : %s" % (d + b + b + b).time())
-
 def time_format(time_str):
     time_str = dt.strptime(str(time_str), "%H:%M:%S")
     time_str = time_str.strftime("%I:%M:%S %p")
@@ -46,8 +32,6 @@ def sleepy(hour, minute):
 def sleepy_now():
     time_now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     time_now = dt.strptime(str(time_now), "%Y-%m-%d %H:%M:%S")
-    #rule_ninety = datetime.timedelta(hours=0, minutes=90)
-    #rule_fourteen = datetime.timedelta(hours=0, minutes=14)
 
     first_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 1, 14)))
     second_time = time_now + datetime.timedelta(minutes=(add_up_hour(90, 2, 14)))
@@ -66,5 +50,7 @@ def sleepy_now():
     return (time_now, first_time, second_time, third_time, fourth_time,
             fifth_time, sixth_time)
 
+print ("only night")
 print(sleepy(5,30))
+print("all day")
 print(sleepy_now())
